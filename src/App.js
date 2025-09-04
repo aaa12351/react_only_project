@@ -10,21 +10,25 @@ import './style/App.css' ;
 
 
 
-function App(){                        // menuData와 연동
+function App(){                        // menuData와 연동  
+                                      // 목록을 여러 개 만들면 index(데이터베이스로 따지면 primary key)
     return(
         <div className="App">
             <h1>React Example Navigation</h1>
             <table border="1">
+                <thead>
                 <tr>
-                    {menuData.map((item) => (
-                        <th>{item.chapter}</th>
+                    {menuData.map((item, index) => (
+                        <th key={index}>{item.chapter}</th>  
                     ))}
                                                                 
                 </tr>
+                </thead>
+                <tbody>
                 <tr>
                      {menuData.map((item) => (
                         <td key={item.chapter}>
-                            <ul>
+                           <ul>
                             {item.items.map((bean) =>(
                                 <li key={bean.path}>
                                     <Link to={bean.path}>{bean.label}</Link>
@@ -34,6 +38,7 @@ function App(){                        // menuData와 연동
                         </td>
                     ))}
                 </tr>
+                </tbody>
             </table>
 
             {/* 라우터 모음 */}
