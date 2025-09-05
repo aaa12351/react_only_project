@@ -31,14 +31,24 @@ function App(){
     }
 ];
 
+    const adult = (age) => {
+            return age > 19 ? '성인' : '미성년자';
+        };
+
+
     const mrList = memberList.map((member) =>(
         <tr key={member.id}>
             <td>{member.id}</td>
             <td>{member.name}</td>
             <td>{member.email}</td>
             <td>{member.joinDate}</td>
-            <td>{member.age}</td>
+            <td>{member.age}살</td>
+            <td>{adult(member.age)}입니다</td>
+
         </tr>
+
+        
+         
     ));
 
     
@@ -51,6 +61,7 @@ function App(){
                         <td>이메일</td>
                         <td>참가일</td>
                         <td>나이</td>
+                        <td>구분</td>
                 </tr>
             </thead>
             <tbody>
