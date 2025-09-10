@@ -63,4 +63,14 @@ export const menuData = [
     },
 
 
+     {
+        chapter: "ch06. IT Cafe",
+        items: [
+              { path: '/coffee_bread_01', label: 'IT Cafe 01' },
+              { path: '/coffee_bread_02', label: 'IT Cafe 02' },
+        ]
+
+    },
+
+
 ];
