@@ -14,7 +14,7 @@ import { useState } from "react";
 4. id 항목은 사용자에게 보여 주되, 읽기 전용으로 처리하면 됩니다.
     가짜는 읽기 전용, 진짜 정보는 type="hidden"으로 처리합니다.    
 */
-function App({ product, onSubmitUpdate }){
+function App({ product, onSubmitUpdate, categories }){
     // 코드에서 반복적인 단어는 변수로 만들어 JSX 문법으로 처리하세요.
     const comment = '수정'; 
     
@@ -41,7 +41,14 @@ function App({ product, onSubmitUpdate }){
             return updated;
         });  
     }
-    
+
+    // 이전에 선택한 카테고리 정보와 해당 카테고리의 영문 이름(item.english)과 일치하면 선택이 되도록 해줘야 합니다.
+    const categoryOptions = categories.map((cate, index) =>
+        <option key={index} value={cate.english} selected={formData.category === cate.english}>
+            {cate.korean}
+        </option>
+    );
+
     return(
         <div>
             <h2>상품 {comment}</h2>
@@ -63,10 +70,11 @@ function App({ product, onSubmitUpdate }){
                 </InputGroup>
                  <InputGroup className="custom-input-group">
                     <InputGroup.Text className="input-group-text">카테고리</InputGroup.Text>
-                    <Form.Select name="category" onChange={InputChange}>
+                    <Form.Select name="category" value={formData.category} onChange={InputChange}>
                         <option value="-">-- 카테고리를 선택해 주세요.</option>
-                        <option value="bread" selected={formData.category === 'bread'}>빵</option>
-                        <option value="beverage" selected={formData.category === 'beverage'}>음료수</option>
+                        <option value="bread">빵</option>
+                        <option value="beverage">음료수</option>
+                        <option value="cake">케익</option>
                     </Form.Select>
                 </InputGroup>
                  <InputGroup className="custom-input-group">
